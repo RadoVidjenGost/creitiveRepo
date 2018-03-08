@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.vaivaidev.creitiveblog.R;
+import com.vaivaidev.creitiveblog.creitiveblog.presenter.LoginPresenter;
 import com.vaivaidev.creitiveblog.creitiveblog.view.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -13,21 +14,22 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private EditText userEmail;
     private EditText userPassword;
     private Button loginButton;
-    //private Presenter presenter;
+    private LoginPresenter loginPresenter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        userEmail = findViewById(R.id.)
         setupUi();
+        loginPresenter = new LoginPresenter(this);
     }
 
     private void setupUi() {
         userEmail = findViewById(R.id.editTextEmail);
         userPassword = findViewById(R.id.editTextPassword);
         loginButton = findViewById(R.id.buttonLogin);
+
 
 
     }
