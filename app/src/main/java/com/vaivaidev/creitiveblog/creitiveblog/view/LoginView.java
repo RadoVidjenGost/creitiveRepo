@@ -6,7 +6,6 @@ package com.vaivaidev.creitiveblog.creitiveblog.view;
 
 public interface LoginView {
 
-    void login(String userEmail, String userPassword);
     void onSuccessLogin();
-
+    void onFailedLogin();
 }
