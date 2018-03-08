@@ -1,5 +1,7 @@
 package com.vaivaidev.creitiveblog.creitiveblog.presenter;
 
+
+
 import com.vaivaidev.creitiveblog.creitiveblog.model.ResponseToken;
 import com.vaivaidev.creitiveblog.creitiveblog.model.UserCredentials;
 import com.vaivaidev.creitiveblog.creitiveblog.retrofit.GetTokenFromLogin;
@@ -15,7 +17,6 @@ import retrofit2.Response;
  */
 
 public class LoginPresenter {
-
 
     private LoginView loginView;
     private ResponseToken responseToken;
@@ -34,6 +35,7 @@ public class LoginPresenter {
             public void onResponse(Call<ResponseToken> call, Response<ResponseToken> response) {
                 responseToken = response.body();
                 loginView.onSuccessLogin();
+                loginView.saveToken(responseToken.getToken());
 
             }
 
@@ -47,5 +49,6 @@ public class LoginPresenter {
 
 
     }
+
 
 }

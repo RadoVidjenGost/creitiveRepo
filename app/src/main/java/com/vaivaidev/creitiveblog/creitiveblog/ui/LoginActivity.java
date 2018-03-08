@@ -1,5 +1,7 @@
 package com.vaivaidev.creitiveblog.creitiveblog.ui;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,21 +12,28 @@ import android.widget.Toast;
 import com.vaivaidev.creitiveblog.R;
 import com.vaivaidev.creitiveblog.creitiveblog.model.UserCredentials;
 import com.vaivaidev.creitiveblog.creitiveblog.presenter.LoginPresenter;
+import com.vaivaidev.creitiveblog.creitiveblog.utils.SharedPreferencesManager;
 import com.vaivaidev.creitiveblog.creitiveblog.view.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
+
+
 
     private EditText userEmail;
     private EditText userPassword;
     private Button loginButton;
     private LoginPresenter loginPresenter;
+    private String token;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        isUserAlreadyLoggedIn();
         setupUi();
+
         loginPresenter = new LoginPresenter(this);
     }
 
@@ -48,13 +57,31 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
     @Override
+    public void saveToken(String token) {
+        if(token != null)
+            SharedPreferencesManager.getInstance(this).saveUserToken(token);
+    }
+
+    @Override
     public void onSuccessLogin() {
         Toast.makeText(this, "Successful login!", Toast.LENGTH_SHORT).show();
-        //startBlogActivity();
     }
 
     @Override
     public void onFailedLogin() {
         Toast.makeText(this, "Failed login!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void isUserAlreadyLoggedIn() {
+        if(SharedPreferencesManager.getInstance(this).getUserToken() != null) {
+            startBlogActivity();
+            finish();
+        }
+
+    }
+
+    private void startBlogActivity() {
+        Intent intent = new Intent();
+
     }
 }

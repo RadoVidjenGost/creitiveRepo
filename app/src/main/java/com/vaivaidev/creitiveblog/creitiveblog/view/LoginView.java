@@ -6,6 +6,7 @@ package com.vaivaidev.creitiveblog.creitiveblog.view;
 
 public interface LoginView {
 
+    void saveToken(String token);
     void onSuccessLogin();
     void onFailedLogin();
 }
