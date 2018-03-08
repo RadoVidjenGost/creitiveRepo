@@ -1,7 +1,9 @@
-package com.vaivaidev.creitiveblog;
+package com.vaivaidev.creitiveblog.creitiveblog.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.vaivaidev.creitiveblog.R;
 
 public class LoginActivity extends AppCompatActivity {
 
