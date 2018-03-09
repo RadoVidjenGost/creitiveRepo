@@ -17,13 +17,10 @@ import com.vaivaidev.creitiveblog.creitiveblog.view.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-
-
     private EditText userEmail;
     private EditText userPassword;
     private Button loginButton;
     private LoginPresenter loginPresenter;
-    private String token;
 
 
     @Override
@@ -81,7 +78,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     private void startBlogActivity() {
-        Intent intent = new Intent();
-
+        Toast.makeText(this, "BLOG ACTIVITY STARTED", Toast.LENGTH_SHORT).show();
     }
 }
