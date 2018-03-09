@@ -3,6 +3,8 @@ package com.vaivaidev.creitiveblog.creitiveblog.ui;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +18,7 @@ import com.vaivaidev.creitiveblog.creitiveblog.utils.NetworkConnectionCheck;
  * Created by Iva on 3/9/2018.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
 
     private BroadcastReceiver networkReceiver = new BroadcastReceiver() {
@@ -31,16 +33,23 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
+        registerReceiver(networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        determineConnectionStatus();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try {
+            unregisterReceiver(networkReceiver);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void determineConnectionStatus() {
         boolean connected = NetworkConnectionCheck.determineConnection(this);
