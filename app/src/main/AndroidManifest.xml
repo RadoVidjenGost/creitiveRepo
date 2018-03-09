@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".creitiveblog.ui.BlogListActivity"/>
 
-        <activity android:name=".creitiveblog.ui.BlogListActivity">
+        <activity android:name=".creitiveblog.ui.DisplayBlogActivity"/>
 
-        </activity>
 
     </application>
 

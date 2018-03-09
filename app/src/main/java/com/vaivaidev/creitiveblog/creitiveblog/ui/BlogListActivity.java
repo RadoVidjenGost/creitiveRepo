@@ -2,7 +2,7 @@ package com.vaivaidev.creitiveblog.creitiveblog.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Iva on 3/9/2018.
  */
 
-public class BlogListActivity extends AppCompatActivity implements BlogListView {
+public class BlogListActivity extends BaseActivity implements BlogListView {
 
     private RecyclerView recyclerView;
     private BlogItemsAdapter blogItemsAdapter;
@@ -35,6 +35,22 @@ public class BlogListActivity extends AppCompatActivity implements BlogListView 
         blogListPresenter = new BlogListPresenter(this);
         blogListPresenter.fetchDataFromServer(SharedPreferencesManager.getInstance(this).getUserToken());
 
+    }
+
+    @Override
+    protected void onNetworkChange(boolean connected) {
+        if(connected) {
+            Snackbar snackbar =
+                    Snackbar.make(findViewById(R.id.blog_activity_id),
+                            getResources().getString(R.string.internet_connection), Snackbar.LENGTH_LONG);
+            snackbar.show();
+        } else {
+            Snackbar snackbar =
+                    Snackbar.make(findViewById(R.id.blog_activity_id),
+                            getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG);
+            snackbar.getView().setBackgroundColor(getResources().getColor(R.color.red));
+            snackbar.show();
+        }
     }
 
     private void setupUi() {

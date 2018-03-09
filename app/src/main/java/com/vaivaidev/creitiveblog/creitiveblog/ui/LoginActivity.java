@@ -3,9 +3,11 @@ package com.vaivaidev.creitiveblog.creitiveblog.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,7 +18,7 @@ import com.vaivaidev.creitiveblog.creitiveblog.presenter.LoginPresenter;
 import com.vaivaidev.creitiveblog.creitiveblog.utils.SharedPreferencesManager;
 import com.vaivaidev.creitiveblog.creitiveblog.view.LoginView;
 
-public class LoginActivity extends AppCompatActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginView {
 
     private EditText userEmail;
     private EditText userPassword;
@@ -33,6 +35,22 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setupUi();
 
         loginPresenter = new LoginPresenter(this);
+    }
+
+    @Override
+    protected void onNetworkChange(boolean connected) {
+        if(connected) {
+            Snackbar snackbar =
+                    Snackbar.make(findViewById(R.id.activity_login_id),
+                            getResources().getString(R.string.internet_connection), Snackbar.LENGTH_LONG);
+            snackbar.show();
+        } else {
+            Snackbar snackbar =
+                    Snackbar.make(findViewById(R.id.activity_login_id),
+                            getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG);
+            snackbar.getView().setBackgroundColor(getResources().getColor(R.color.red));
+            snackbar.show();
+        }
     }
 
     private void setupUi() {

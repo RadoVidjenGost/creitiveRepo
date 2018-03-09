@@ -8,10 +8,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.vaivaidev.creitiveblog.R;
 import com.vaivaidev.creitiveblog.creitiveblog.utils.NetworkConnectionCheck;
 
 /**
@@ -21,7 +18,7 @@ import com.vaivaidev.creitiveblog.creitiveblog.utils.NetworkConnectionCheck;
 public abstract class BaseActivity extends AppCompatActivity {
 
 
-    private BroadcastReceiver networkReceiver = new BroadcastReceiver() {
+    BroadcastReceiver networkReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             determineConnectionStatus();
@@ -51,19 +48,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected abstract void onNetworkChange(boolean connected);
+
     private void determineConnectionStatus() {
         boolean connected = NetworkConnectionCheck.determineConnection(this);
         onNetworkChange(connected);
     }
 
-    public void onNetworkChange(boolean connected) {
-        ViewGroup viewGroup = findViewById(R.id.no_connection_bar);
-        if (viewGroup != null) {
-            if (connected) {
-                viewGroup.setVisibility(View.GONE);
-            } else {
-                viewGroup.setVisibility(View.VISIBLE);
-            }
-        }
-    }
+
+
+
 }
