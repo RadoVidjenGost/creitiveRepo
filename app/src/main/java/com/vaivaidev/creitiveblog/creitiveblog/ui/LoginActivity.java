@@ -73,12 +73,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private void isUserAlreadyLoggedIn() {
         if(SharedPreferencesManager.getInstance(this).getUserToken() != null) {
             startBlogActivity();
-            finish();
         }
 
     }
 
     private void startBlogActivity() {
         Toast.makeText(this, "BLOG ACTIVITY STARTED", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, BlogListActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 }

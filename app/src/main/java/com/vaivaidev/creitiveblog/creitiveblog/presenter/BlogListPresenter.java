@@ -7,6 +7,7 @@ import com.vaivaidev.creitiveblog.creitiveblog.retrofit.GetBlogItemService;
 import com.vaivaidev.creitiveblog.creitiveblog.retrofit.RetrofitClient;
 import com.vaivaidev.creitiveblog.creitiveblog.view.BlogListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,7 +21,7 @@ import retrofit2.Response;
 public class BlogListPresenter {
 
     private BlogListView blogListView;
-    private List<BlogItem> blogItemList;
+    private List<BlogItem> blogItemList = new ArrayList<>();
 
 
     public BlogListPresenter(BlogListView blogListView) {
