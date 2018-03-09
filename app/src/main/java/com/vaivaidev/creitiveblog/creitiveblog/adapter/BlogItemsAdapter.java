@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.vaivaidev.creitiveblog.R;
 import com.vaivaidev.creitiveblog.creitiveblog.model.BlogItem;
+import com.vaivaidev.creitiveblog.creitiveblog.ui.DisplayBlogActivity;
 
 import java.util.List;
 
@@ -24,6 +26,7 @@ import java.util.List;
 public class BlogItemsAdapter extends
         RecyclerView.Adapter<BlogItemsAdapter.BlogItemsViewHolder> {
 
+    public static final String BLOG_ID = "BLOG_ID";
     private List<BlogItem> blogItemList;
     private Context context;
 
@@ -50,7 +53,7 @@ public class BlogItemsAdapter extends
                 .load(blogItem.getImageUrl())
                 .into(holder.image);
 
-        holder.description.setText(blogItem.getDescription());
+        holder.description.setText(Html.fromHtml(blogItem.getDescription()));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,8 +69,9 @@ public class BlogItemsAdapter extends
     }
 
     private void startDetailsActivity(int id) {
-        //Intent intent = new Intent(context, DetailBlogActivity.class);
-
+        Intent intent = new Intent(context, DisplayBlogActivity.class);
+        intent.putExtra(BLOG_ID, id);
+        context.startActivity(intent);
 
 
     }

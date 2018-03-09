@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 
 public class SharedPreferencesManager {
 
-    private static final String APP_PREFS= "AppPrefsFile";
+    private static final String APP_PREFS = "AppPrefsFile";
     private static final String USER_TOKEN = "UserToken";
 
     private SharedPreferences sharedPrefs;
@@ -32,7 +32,6 @@ public class SharedPreferencesManager {
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString(USER_TOKEN, token);
         editor.apply();
-
     }
 
     public String getUserToken() {

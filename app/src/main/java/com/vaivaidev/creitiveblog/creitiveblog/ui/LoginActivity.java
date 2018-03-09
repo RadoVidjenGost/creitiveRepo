@@ -39,12 +39,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     protected void onNetworkChange(boolean connected) {
-        if(connected) {
-            Snackbar snackbar =
-                    Snackbar.make(findViewById(R.id.activity_login_id),
-                            getResources().getString(R.string.internet_connection), Snackbar.LENGTH_LONG);
-            snackbar.show();
-        } else {
+        if(!connected) {
             Snackbar snackbar =
                     Snackbar.make(findViewById(R.id.activity_login_id),
                             getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG);
@@ -54,7 +49,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     private void setupUi() {
-        setTitle("Login");
+        setTitle(getResources().getString(R.string.loginActivityTitle));
         userEmail = findViewById(R.id.editTextEmail);
         userPassword = findViewById(R.id.editTextPassword);
         loginButton = findViewById(R.id.buttonLogin);
@@ -65,7 +60,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 String email = userEmail.getText().toString();
                 String password = userPassword.getText().toString();
 
-                loginPresenter.login(new UserCredentials("candidate@creitive.com", "1234567"));
+                loginPresenter.login("candidate@creitive.com", "1234567");
 
             }
         });

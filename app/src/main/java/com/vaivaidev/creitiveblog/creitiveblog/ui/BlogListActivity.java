@@ -39,22 +39,18 @@ public class BlogListActivity extends BaseActivity implements BlogListView {
 
     @Override
     protected void onNetworkChange(boolean connected) {
-        if(connected) {
-            Snackbar snackbar =
-                    Snackbar.make(findViewById(R.id.blog_activity_id),
-                            getResources().getString(R.string.internet_connection), Snackbar.LENGTH_LONG);
-            snackbar.show();
-        } else {
+        if(!connected) {
             Snackbar snackbar =
                     Snackbar.make(findViewById(R.id.blog_activity_id),
                             getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(getResources().getColor(R.color.red));
             snackbar.show();
         }
+
     }
 
     private void setupUi() {
-        setTitle("Blog List");
+        setTitle(getResources().getString(R.string.blog_list_activity_title));
         recyclerView = findViewById(R.id.blog_items_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

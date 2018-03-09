@@ -3,8 +3,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="loginActivityTitle">Login</string>
-    <string name="blogListActivityTitle">Blog List</string>
+    <string name="login_activity_title">Login</string>
+    <string name="blog_list_activity_title">Blog List</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="internet_connection">Internet connection</string>
 </resources>

@@ -25,7 +25,9 @@ public class LoginPresenter {
         this.loginView = loginView;
     }
 
-    public void login(UserCredentials userCredentials) {
+    public void login(String userEmail, String userPassword) {
+
+        UserCredentials userCredentials = new UserCredentials(userEmail, userPassword);
 
         Call<ResponseToken> call =
                 RetrofitClient.createService(GetTokenFromLoginService.class).loginWithCredentials(userCredentials);

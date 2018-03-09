@@ -29,7 +29,6 @@ public class BlogListPresenter {
     }
 
 
-
     public void fetchDataFromServer(String authToken){
 
         Call<List<BlogItem>> call =
