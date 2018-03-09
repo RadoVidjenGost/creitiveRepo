@@ -40,10 +40,8 @@ public class BlogListPresenter {
             @Override
             public void onResponse(Call<List<BlogItem>> call, Response<List<BlogItem>> response) {
                 blogItemList.addAll(response.body());
-                for(BlogItem bi : blogItemList) {
-                    Log.i("BLOG ITEMS", bi.getTitle());
-                }
-
+                if(blogListView != null)
+                    blogListView.preparedListForAdapter(blogItemList);
             }
 
             @Override

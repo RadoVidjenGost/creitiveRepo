@@ -52,5 +52,6 @@ public class BlogListActivity extends AppCompatActivity implements BlogListView 
         recyclerView.setAdapter(blogItemsAdapter);
 
 
+
     }
 }
