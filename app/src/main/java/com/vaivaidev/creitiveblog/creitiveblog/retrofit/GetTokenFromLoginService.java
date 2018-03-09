@@ -15,7 +15,7 @@ import retrofit2.http.Query;
  * Created by Iva on 3/8/2018.
  */
 
-public interface GetTokenFromLogin {
+public interface GetTokenFromLoginService {
 
 
     @Headers({

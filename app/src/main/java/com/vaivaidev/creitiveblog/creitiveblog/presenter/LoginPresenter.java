@@ -4,7 +4,7 @@ package com.vaivaidev.creitiveblog.creitiveblog.presenter;
 
 import com.vaivaidev.creitiveblog.creitiveblog.model.ResponseToken;
 import com.vaivaidev.creitiveblog.creitiveblog.model.UserCredentials;
-import com.vaivaidev.creitiveblog.creitiveblog.retrofit.GetTokenFromLogin;
+import com.vaivaidev.creitiveblog.creitiveblog.retrofit.GetTokenFromLoginService;
 import com.vaivaidev.creitiveblog.creitiveblog.retrofit.RetrofitClient;
 import com.vaivaidev.creitiveblog.creitiveblog.view.LoginView;
 
@@ -28,7 +28,7 @@ public class LoginPresenter {
     public void login(UserCredentials userCredentials) {
 
         Call<ResponseToken> call =
-                RetrofitClient.createService(GetTokenFromLogin.class).loginWithCredentials(userCredentials);
+                RetrofitClient.createService(GetTokenFromLoginService.class).loginWithCredentials(userCredentials);
 
         call.enqueue(new Callback<ResponseToken>() {
             @Override
