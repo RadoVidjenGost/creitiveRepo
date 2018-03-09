@@ -28,10 +28,6 @@ public class BlogListActivity extends AppCompatActivity implements BlogListView 
     }
 
     private void setupUi() {
-
-
-
-
-
+        recyclerView = findViewById(R.id.blog_items_recyclerView);
     }
 }
