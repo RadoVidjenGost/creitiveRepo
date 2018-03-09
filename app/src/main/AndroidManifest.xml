@@ -12,8 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
-        <activity android:name=".creitiveblog.ui.LoginActivity"
-            android:label="@string/loginActivityTitle">
+        <activity android:name=".creitiveblog.ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +21,7 @@
         </activity>
 
 
-        <activity android:name=".creitiveblog.ui.BlogListActivity"
-            android:label="@string/blogListActivityTitle">
+        <activity android:name=".creitiveblog.ui.BlogListActivity">
 
         </activity>
 

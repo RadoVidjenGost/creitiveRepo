@@ -38,6 +38,7 @@ public class BlogListActivity extends AppCompatActivity implements BlogListView 
     }
 
     private void setupUi() {
+        setTitle("Blog List");
         recyclerView = findViewById(R.id.blog_items_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

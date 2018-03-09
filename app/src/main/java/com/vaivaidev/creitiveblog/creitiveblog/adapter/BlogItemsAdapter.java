@@ -1,7 +1,10 @@
 package com.vaivaidev.creitiveblog.creitiveblog.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,14 +34,15 @@ public class BlogItemsAdapter extends
 
     @Override
     public BlogItemsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_list_item, parent, false);
+        View view = LayoutInflater.from
+                (parent.getContext()).inflate(R.layout.blog_list_item, parent, false);
         return new BlogItemsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(BlogItemsViewHolder holder, int position) {
 
-        BlogItem blogItem = blogItemList.get(position);
+        final BlogItem blogItem = blogItemList.get(position);
 
         holder.title.setText(blogItem.getTitle());
 
@@ -47,6 +51,13 @@ public class BlogItemsAdapter extends
                 .into(holder.image);
 
         holder.description.setText(blogItem.getDescription());
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startDetailsActivity(blogItem.getId());
+            }
+        });
     }
 
     @Override
@@ -54,18 +65,27 @@ public class BlogItemsAdapter extends
         return blogItemList.size();
     }
 
+    private void startDetailsActivity(int id) {
+        //Intent intent = new Intent(context, DetailBlogActivity.class);
+
+
+
+    }
+
+
     static class BlogItemsViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
         ImageView image;
         TextView description;
-
+        CardView cardView;
         public BlogItemsViewHolder(View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.blog_item_title);
             image = itemView.findViewById(R.id.blog_item_imageview);
             description = itemView.findViewById(R.id.blog_item_description);
+            cardView = itemView.findViewById(R.id.blog_item_cardview);
 
 
         }

@@ -2,6 +2,7 @@ package com.vaivaidev.creitiveblog.creitiveblog.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     private void setupUi() {
+        setTitle("Login");
         userEmail = findViewById(R.id.editTextEmail);
         userPassword = findViewById(R.id.editTextPassword);
         loginButton = findViewById(R.id.buttonLogin);
