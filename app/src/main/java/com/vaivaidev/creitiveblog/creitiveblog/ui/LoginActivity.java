@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void onSuccessLogin() {
         Toast.makeText(this, "Successful login!", Toast.LENGTH_SHORT).show();
+        startBlogActivity();
     }
 
     @Override

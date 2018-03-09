@@ -34,8 +34,8 @@ public class LoginPresenter {
             @Override
             public void onResponse(Call<ResponseToken> call, Response<ResponseToken> response) {
                 responseToken = response.body();
-                loginView.onSuccessLogin();
                 loginView.saveToken(responseToken.getToken());
+                loginView.onSuccessLogin();
 
             }
 
