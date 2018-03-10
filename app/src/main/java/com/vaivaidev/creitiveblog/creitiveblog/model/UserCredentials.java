@@ -2,6 +2,8 @@ package com.vaivaidev.creitiveblog.creitiveblog.model;
 
 /**
  * Created by Iva on 3/8/2018.
+ * This class is used for packing user and password
+ * required by retrofit.
  */
 
 public class UserCredentials {
