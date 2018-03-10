@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 
 import com.vaivaidev.creitiveblog.R;
@@ -23,19 +25,23 @@ public class DisplayBlogActivity extends BaseActivity
         implements DisplayBlogView {
 
     private WebView webView;
+    private ProgressBar progressBar;
     private DisplayBlogPresenter displayBlogPresenter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_blog);
 
+        setupUi();
+
         Bundle bundle = getIntent().getExtras();
         int contentId = -1;
         if(bundle != null) {
             contentId = bundle.getInt(BlogItemsAdapter.BLOG_ID);
         }
-        setupUi();
+
         displayBlogPresenter = new DisplayBlogPresenter(this);
         displayBlogPresenter.
                 showBlogWithId(SharedPreferencesManager.getInstance(this).getUserToken(), contentId);
@@ -45,8 +51,17 @@ public class DisplayBlogActivity extends BaseActivity
 
     @SuppressLint("SetJavaScriptEnabled")
     private void setupUi(){
+
         webView = findViewById(R.id.blog_content);
-        webView.setWebViewClient(new WebViewClient());
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
         webView.getSettings().setJavaScriptEnabled(true);
     }
 
@@ -65,7 +80,8 @@ public class DisplayBlogActivity extends BaseActivity
     @Override
     public void displayBlogItem(String content) {
         if(content != null) {
-            this.webView.loadData(content, "text/html", "UTF-8");
+            webView.setVisibility(View.VISIBLE);
+            webView.loadData(content, "text/html", "UTF-8");
         }
     }
 

@@ -88,10 +88,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     private void startBlogActivity() {
-        Toast.makeText(this, "BLOG ACTIVITY STARTED", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, BlogListActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
-
     }
 }
