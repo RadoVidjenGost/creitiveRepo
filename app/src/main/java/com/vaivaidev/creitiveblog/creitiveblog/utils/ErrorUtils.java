@@ -3,6 +3,8 @@ package com.vaivaidev.creitiveblog.creitiveblog.utils;
 
 /**
  * Created by Iva on 3/10/2018.
+ * ErrorUtils class with one method for
+ * formatting error codes from server.
  */
 
 public class ErrorUtils {

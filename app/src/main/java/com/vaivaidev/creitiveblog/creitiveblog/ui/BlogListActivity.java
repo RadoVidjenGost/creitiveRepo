@@ -54,17 +54,11 @@ public class BlogListActivity extends BaseActivity implements BlogListView {
         recyclerView = findViewById(R.id.blog_items_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
     }
 
     @Override
     public void preparedListForAdapter(List<BlogItem> blogItemList) {
-
         blogItemsAdapter = new BlogItemsAdapter(blogItemList, this);
         recyclerView.setAdapter(blogItemsAdapter);
-
-
-
     }
 }

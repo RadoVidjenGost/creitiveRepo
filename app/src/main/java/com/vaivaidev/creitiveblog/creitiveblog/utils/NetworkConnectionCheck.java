@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 
 /**
  * Created by Iva on 3/9/2018.
+ * Class for checking the connectivity.
  */
 
 public class NetworkConnectionCheck {

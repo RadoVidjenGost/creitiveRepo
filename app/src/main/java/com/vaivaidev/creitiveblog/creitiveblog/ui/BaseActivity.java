@@ -13,6 +13,9 @@ import com.vaivaidev.creitiveblog.creitiveblog.utils.NetworkConnectionCheck;
 
 /**
  * Created by Iva on 3/9/2018.
+ * Base activity which all other activities should extend.
+ * Here we are checking if the connection is available,
+ * and informing child activities.
  */
 
 public abstract class BaseActivity extends AppCompatActivity {

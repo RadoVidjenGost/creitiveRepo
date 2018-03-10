@@ -22,6 +22,7 @@ import java.util.List;
 
 /**
  * Created by Iva on 3/9/2018.
+ * Adapter class used for RecyclerView, map items from list to view.
  */
 
 public class BlogItemsAdapter extends

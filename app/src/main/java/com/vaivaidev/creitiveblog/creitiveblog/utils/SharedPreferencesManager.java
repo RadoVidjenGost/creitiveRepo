@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 /**
  * Created by Iva on 3/8/2018.
+ * Singleton class for shared preferences.
+ * After first successful login we save the token to shared prefs,
+ * then we use that token to determine
  */
 
 public class SharedPreferencesManager {

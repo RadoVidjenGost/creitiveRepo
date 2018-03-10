@@ -18,7 +18,6 @@ public interface GetBlogItemService {
     @Headers({
             "Accept: application/json",
             "Content-Type: application/json"
-
     })
     @GET("/blogs")
     Call<List<BlogItem>> getBlogItemsFromServer(@Header("X-Authorize") String authToken);
