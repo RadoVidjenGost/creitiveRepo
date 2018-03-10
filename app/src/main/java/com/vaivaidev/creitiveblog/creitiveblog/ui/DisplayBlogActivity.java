@@ -1,5 +1,6 @@
 package com.vaivaidev.creitiveblog.creitiveblog.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -42,6 +43,7 @@ public class DisplayBlogActivity extends BaseActivity
 
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void setupUi(){
         webView = findViewById(R.id.blog_content);
         webView.setWebViewClient(new WebViewClient());
@@ -73,6 +75,7 @@ public class DisplayBlogActivity extends BaseActivity
             webView.goBack();
         } else {
             super.onBackPressed();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
     }
 }

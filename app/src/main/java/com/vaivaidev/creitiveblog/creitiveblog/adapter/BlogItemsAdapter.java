@@ -1,5 +1,6 @@
 package com.vaivaidev.creitiveblog.creitiveblog.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -72,6 +73,7 @@ public class BlogItemsAdapter extends
         Intent intent = new Intent(context, DisplayBlogActivity.class);
         intent.putExtra(BLOG_ID, id);
         context.startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
 
