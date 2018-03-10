@@ -1,19 +1,14 @@
 package com.vaivaidev.creitiveblog.creitiveblog.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.vaivaidev.creitiveblog.R;
-import com.vaivaidev.creitiveblog.creitiveblog.model.UserCredentials;
 import com.vaivaidev.creitiveblog.creitiveblog.presenter.LoginPresenter;
 import com.vaivaidev.creitiveblog.creitiveblog.utils.SharedPreferencesManager;
 import com.vaivaidev.creitiveblog.creitiveblog.view.LoginView;
@@ -49,10 +44,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     private void setupUi() {
-        setTitle(getResources().getString(R.string.loginActivityTitle));
-        userEmail = findViewById(R.id.editTextEmail);
-        userPassword = findViewById(R.id.editTextPassword);
-        loginButton = findViewById(R.id.buttonLogin);
+        setTitle(getResources().getString(R.string.login_activity_title));
+        userEmail = findViewById(R.id.edit_text_email);
+        userPassword = findViewById(R.id.edit_text_password);
+        loginButton = findViewById(R.id.button_login);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

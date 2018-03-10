@@ -73,7 +73,6 @@ public class BlogItemsAdapter extends
         intent.putExtra(BLOG_ID, id);
         context.startActivity(intent);
 
-
     }
 
 

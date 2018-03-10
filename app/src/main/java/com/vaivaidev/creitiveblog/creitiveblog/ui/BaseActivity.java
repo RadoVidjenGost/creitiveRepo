@@ -18,7 +18,7 @@ import com.vaivaidev.creitiveblog.creitiveblog.utils.NetworkConnectionCheck;
 public abstract class BaseActivity extends AppCompatActivity {
 
 
-    BroadcastReceiver networkReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver networkReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             determineConnectionStatus();
