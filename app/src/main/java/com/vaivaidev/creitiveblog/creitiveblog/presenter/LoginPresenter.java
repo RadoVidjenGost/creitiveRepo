@@ -6,7 +6,11 @@ import com.vaivaidev.creitiveblog.creitiveblog.model.ResponseToken;
 import com.vaivaidev.creitiveblog.creitiveblog.model.UserCredentials;
 import com.vaivaidev.creitiveblog.creitiveblog.retrofit.GetTokenFromLoginService;
 import com.vaivaidev.creitiveblog.creitiveblog.retrofit.RetrofitClient;
+import com.vaivaidev.creitiveblog.creitiveblog.utils.ErrorUtils;
 import com.vaivaidev.creitiveblog.creitiveblog.view.LoginView;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,9 +39,13 @@ public class LoginPresenter {
         call.enqueue(new Callback<ResponseToken>() {
             @Override
             public void onResponse(Call<ResponseToken> call, Response<ResponseToken> response) {
-                responseToken = response.body();
-                loginView.saveToken(responseToken.getToken());
-                loginView.onSuccessLogin();
+                if(response.isSuccessful()) {
+                    responseToken = response.body();
+                    loginView.saveToken(responseToken.getToken());
+                    loginView.onSuccessLogin();
+                } else {
+                    loginView.onServerError(ErrorUtils.serverErrorResponse(response.code()));
+                }
 
             }
 
@@ -48,8 +56,24 @@ public class LoginPresenter {
             }
         });
 
+    }
 
+    /**
+     * Simple email validation method.
+     *
+     * */
+    public boolean isEmailValid(String email) {
+        boolean isValid = false;
 
+        String expression = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+
+        if (matcher.matches()) {
+            isValid = true;
+        }
+        return isValid;
     }
 
 

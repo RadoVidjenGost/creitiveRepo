@@ -9,4 +9,5 @@ public interface LoginView {
     void saveToken(String token);
     void onSuccessLogin();
     void onFailedLogin();
+    void onServerError(String errorMessage);
 }

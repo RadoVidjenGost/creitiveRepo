@@ -3,6 +3,7 @@ package com.vaivaidev.creitiveblog.creitiveblog.ui;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,7 +56,17 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 String email = userEmail.getText().toString();
                 String password = userPassword.getText().toString();
 
-                loginPresenter.login("candidate@creitive.com", "1234567");
+                if(!loginPresenter.isEmailValid(email)) {
+                    userEmail.setError(getString(R.string.email_invalid_warning));
+                    return;
+                }
+
+                if(TextUtils.isEmpty(password)) {
+                    userPassword.setError(getString(R.string.password_empty_warning));
+                    return;
+                }
+
+                loginPresenter.login(email, password);
 
             }
         });
@@ -80,6 +91,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
         Toast.makeText(this, "Failed login!", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onServerError(String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
     private void isUserAlreadyLoggedIn() {
         if(SharedPreferencesManager.getInstance(this).getUserToken() != null) {
             startBlogActivity();
@@ -93,4 +109,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
+
+
 }
