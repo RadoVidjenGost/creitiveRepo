@@ -1,11 +1,11 @@
 package com.vaivaidev.creitiveblog.creitiveblog.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.text.Html;
-import android.widget.TextView;
+
+import android.webkit.WebView;
+
 
 import com.vaivaidev.creitiveblog.R;
 import com.vaivaidev.creitiveblog.creitiveblog.adapter.BlogItemsAdapter;
@@ -20,7 +20,7 @@ import com.vaivaidev.creitiveblog.creitiveblog.view.DisplayBlogView;
 public class DisplayBlogActivity extends BaseActivity
         implements DisplayBlogView {
 
-    private TextView content;
+    private WebView webView;
     private DisplayBlogPresenter displayBlogPresenter;
 
     @Override
@@ -42,8 +42,8 @@ public class DisplayBlogActivity extends BaseActivity
     }
 
     private void setupUi(){
-        content = findViewById(R.id.blog_content);
-
+        webView = findViewById(R.id.blog_content);
+        webView.getSettings().setJavaScriptEnabled(true);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class DisplayBlogActivity extends BaseActivity
     @Override
     public void displayBlogItem(String content) {
         if(content != null) {
-            this.content.setText(Html.fromHtml(content));
+            this.webView.loadData(content, "text/html", "UTF-8");
         }
     }
 }
