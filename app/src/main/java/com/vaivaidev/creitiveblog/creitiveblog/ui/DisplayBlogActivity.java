@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 
 import com.vaivaidev.creitiveblog.R;
@@ -43,6 +44,7 @@ public class DisplayBlogActivity extends BaseActivity
 
     private void setupUi(){
         webView = findViewById(R.id.blog_content);
+        webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
     }
 
@@ -62,6 +64,15 @@ public class DisplayBlogActivity extends BaseActivity
     public void displayBlogItem(String content) {
         if(content != null) {
             this.webView.loadData(content, "text/html", "UTF-8");
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
         }
     }
 }
